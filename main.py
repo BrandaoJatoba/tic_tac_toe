@@ -51,6 +51,9 @@ def player_choice(board: list, player: int):
 def check_victory(board: list):
 
     victory = 0
+
+    # add tie condition
+
     for player in range(1, 3):
         if board[0] == player and board[1] == player and board[2] == player:
             victory = player
@@ -58,7 +61,16 @@ def check_victory(board: list):
             victory = player
         if board[6] == player and board[7] == player and board[8] == player:
             victory = player
-
+        if board[0] == player and board[3] == player and board[6] == player:
+            victory = player
+        if board[1] == player and board[4] == player and board[7] == player:
+            victory = player
+        if board[2] == player and board[5] == player and board[8] == player:
+            victory = player
+        if board[0] == player and board[4] == player and board[8] == player:
+            victory = player
+        if board[6] == player and board[4] == player and board[2] == player:
+            victory = player
     return victory
 
 
