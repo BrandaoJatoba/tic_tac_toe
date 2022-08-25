@@ -1,12 +1,12 @@
-# import os
+import os
 import copy
 
 global current_player
 
 
-# def clear_terminal():
-#   os.system('CLS')
-#   pass
+def clear_terminal():
+    os.system('CLS')
+    pass
 
 
 def title_screen():
@@ -48,7 +48,7 @@ def player_choice(board: list, player: int):
     return updating_board
 
 
-def check_victory(board: list):
+def is_game_over(board: list):
 
     victory = 0
 
@@ -80,17 +80,17 @@ def game_loop():
     current_player = 1
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     game_state = 0
-
     while game_state == 0:
-        # clear_terminal()
+        clear_terminal()
         draw_board(board)
         board = player_choice(board, current_player)  # runs the choosing subroutine and updates board
-        # clear_terminal()
+        clear_terminal()
         draw_board(board)
-        if check_victory(board) != 0:
+        if is_game_over(board) != 0:
             victory_message = ["Error", "Player One has won!", "Player Two has won", "It's a TIE!"]
-            message_code = int(check_victory(board))
+            message_code = int(is_game_over(board))
             print(victory_message[message_code])
+            print("Quitting program now...")
             game_state = 1
 
 
