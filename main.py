@@ -53,7 +53,6 @@ def is_game_over(board: list):
     victory = 0
 
     # add tie condition
-
     for player in range(1, 3):
         if board[0] == player and board[1] == player and board[2] == player:
             victory = player
@@ -71,7 +70,9 @@ def is_game_over(board: list):
             victory = player
         if board[6] == player and board[4] == player and board[2] == player:
             victory = player
+    if victory == 0 and 0 not in board: return 3
     return victory
+
 
 
 def game_loop():
