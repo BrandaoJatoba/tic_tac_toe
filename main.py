@@ -49,10 +49,11 @@ def player_choice(board: list, player: int):
 
 
 def is_game_over(board: list):
-
+    # Code for Conditions: 
+    # 0 = game still being played; 
+    # 1 and 2 = Victory of player #1 and #2
+    # 3 = tie
     victory = 0
-
-    # add tie condition
     for player in range(1, 3):
         if board[0] == player and board[1] == player and board[2] == player:
             victory = player
