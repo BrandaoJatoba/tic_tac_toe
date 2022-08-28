@@ -5,12 +5,12 @@ global current_player
 
 
 def clear_terminal():
-    os.system('CLS')
+    os.system('cls' if os.name == 'nt' else 'clear')
     pass
 
 
 def title_screen():
-    print(" Jogo da Velha ou Tic Tac Toe \n")
+    print(" Jogo da Velha (ou Tic Tac Toe [en] \n")
     input("Please press the Enter key to proceed...")
     pass
 
@@ -19,7 +19,7 @@ def draw_board(board_local: list):
     board_drawing = copy.deepcopy(board_local)
     for index, item in enumerate(board_local):
         if board_local[index] == 0:
-            board_drawing[index] = " "
+            board_drawing[index] = str(index+1)
         elif board_local[index] == 1:
             board_drawing[index] = "x"
         elif board_local[index] == 2:
@@ -36,8 +36,21 @@ def draw_board(board_local: list):
 
 def player_choice(board: list, player: int):
 
-    choice = input("Player "+str(player)+",choose a space (1-9):")
-    choice = int(choice) - 1
+    i = 0
+    while i == 0:
+        choice = input("Player "+str(player)+",choose a space (1-9):")
+        try:
+            choice = int(choice) - 1
+        except ValueError:
+            print("Invalid input. Choose free position numbers 1 through 9") 
+            continue 
+        if choice not in range(0,9): 
+            print("Invalid input. Choose free position numbers 1 through 9")
+            continue
+        if board[choice] != 0:
+            print("This position is ocupied. Choose again.")
+        else:
+             i=1                  
     updating_board = copy.deepcopy(board)
     updating_board[int(choice)] = player
     global current_player
