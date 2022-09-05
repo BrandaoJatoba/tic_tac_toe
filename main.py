@@ -10,12 +10,12 @@ def clear_terminal():
 
 
 def title_screen():
-    print(" Jogo da Velha (ou Tic Tac Toe [en] \n")
+    print(" Jogo da Velha (ou Tic Tac Toe [en]) \n")
     input("Please press the Enter key to proceed...")
     pass
 
 
-def draw_board(board_local: list):
+def draw(board_local: list):
     board_drawing = copy.deepcopy(board_local)
     for index, item in enumerate(board_local):
         if board_local[index] == 0:
@@ -34,7 +34,7 @@ def draw_board(board_local: list):
     pass
 
 
-def player_choice(board: list, player: int):
+def get_player_choice(board: list, player: int):
 
     i = 0
     while i == 0:
@@ -94,19 +94,19 @@ def game_loop():
     global current_player
     current_player = 1
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    game_state = 0
-    while game_state == 0:
+    game_is_running = True
+    while game_is_running:
         clear_terminal()
-        draw_board(board)
-        board = player_choice(board, current_player)  # runs the choosing subroutine and updates board
+        draw(board)
+        board = get_player_choice(board, current_player)  # runs the choosing subroutine and updates board
         clear_terminal()
-        draw_board(board)
+        draw(board)
         if is_game_over(board) != 0:
             victory_message = ["Error", "Player One has won!", "Player Two has won", "It's a TIE!"]
             message_code = int(is_game_over(board))
             print(victory_message[message_code])
             print("Quitting program now...")
-            game_state = 1
+            game_is_running = False
 
 
 if __name__ == '__main__':
