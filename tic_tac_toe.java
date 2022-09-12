@@ -14,10 +14,7 @@ public class tic_tac_toe {
     
     public static void main(String[] args) {
         game_loop();
-<<<<<<< HEAD
         input.close();
-=======
->>>>>>> 16f7441f9acc07f10a63c30ddc6d77f088aeada8
     }
      public static void clear_terminal(){
              try {
